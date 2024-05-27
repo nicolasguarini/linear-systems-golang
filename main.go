@@ -11,7 +11,7 @@ func main() {
 	filename := "./matrices/small_matrix.mtx"
 
 	// Read the .mtx file
-	matrix, err := readMTX(filename)
+	a, err := readMTX(filename)
 
 	if err != nil {
 		fmt.Println("Error reading .mtx file:", err)
@@ -19,6 +19,13 @@ func main() {
 	}
 
 	// Print the matrix
-	fmt.Println("Matrix:")
-	fmt.Printf("%v\n", mat.Formatted(matrix))
+	fmt.Println("Matrix A:")
+	fmt.Printf("%v\n", mat.Formatted(a))
+
+	p, n := computePN(a)
+	fmt.Println("Matrix P:")
+	fmt.Println(mat.Formatted(p))
+
+	fmt.Println("Matrix N:")
+	fmt.Println(mat.Formatted(n))
 }
