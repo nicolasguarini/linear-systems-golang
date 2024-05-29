@@ -9,7 +9,7 @@ import (
 	"gonum.org/v1/gonum/mat"
 )
 
-func readMTX(filename string) (*mat.Dense, error) {
+func ReadMTX(filename string) (*mat.Dense, error) {
 	file, err := os.Open(filename)
 	if err != nil {
 		return nil, err
@@ -46,7 +46,7 @@ func readMTX(filename string) (*mat.Dense, error) {
 	return a, nil
 }
 
-func computePN(a *mat.Dense) (*mat.Dense, *mat.Dense) {
+func ComputePN(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	rows, cols := a.Dims()
 	p := mat.NewDense(rows, cols, make([]float64, rows*cols))
 	n := mat.NewDense(rows, cols, make([]float64, rows*cols))
@@ -61,4 +61,14 @@ func computePN(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	}
 
 	return p, n
+}
+
+func SubVectors(a *mat.VecDense, b *mat.VecDense) *mat.VecDense {
+	res := mat.NewVecDense(a.Len(), nil)
+
+	for i := 0; i < a.Len(); i++ {
+		res.SetVec(i, a.At(i, 0)-b.At(i, 0))
+	}
+
+	return res
 }
