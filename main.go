@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"time"
 
 	"gonum.org/v1/gonum/mat"
 )
@@ -13,8 +14,9 @@ func main() {
 		0.00000001,
 		0.0000000001,
 	})
+	maxIter := 1000000
 
-	filename := "./matrices/small_matrix.mtx"
+	filename := "./matrices/spa1.mtx"
 	a, err := ReadMTX(filename)
 
 	if err != nil {
@@ -22,8 +24,8 @@ func main() {
 		return
 	}
 
-	fmt.Println("Matrix A:")
-	fmt.Printf("%v\n", mat.Formatted(a))
+	startTime := time.Now()
+
 	rows, _ := a.Dims()
 
 	tmp := make([]float64, rows)
@@ -36,33 +38,39 @@ func main() {
 	var b mat.VecDense
 	b.MulVec(a, xEs)
 
-	fmt.Println(b)
+	p, _ := ComputePN(a)
 
-	p, n := ComputePN(a)
-	fmt.Println("Matrix P:")
-	fmt.Println(mat.Formatted(p))
+	var pInv mat.Dense
+	pInv.Inverse(p)
 
-	fmt.Println("Matrix N:")
-	fmt.Println(mat.Formatted(n))
-
-	x0 := mat.NewVecDense(b.Len(), make([]float64, b.Len()))
+	x := mat.NewVecDense(b.Len(), make([]float64, b.Len()))
 
 	var ax mat.VecDense
-	ax.MulVec(a, x0)
+	ax.MulVec(a, x)
 
-	axMinusB := SubVectors(&ax, &b)
+	var r mat.VecDense
+	r.SubVec(&ax, &b)
 
-	fmt.Println("ax:", ax)
-	fmt.Println("b:", b)
-	fmt.Println("ax - b:", axMinusB)
+	k := 0
+	for CheckStop(&r, &b, tols.At(3, 0)) {
+		k += 1
+		newX, newR := UpdateJacobi(x, &pInv, a, &b)
 
-	fmt.Println("Norm of ax-b:", axMinusB.Norm(2))
-	fmt.Println("Norm of b:", b.Norm(2))
+		x = newX
+		r = *newR
 
-	if axMinusB.Norm(2)/b.Norm(2) < tols.At(0, 0) {
-		fmt.Println("Finished: stop criterium satisfied!")
-	} else {
-		fmt.Println("Keep going...")
+		if k > maxIter {
+			fmt.Println("Non converge!")
+			break
+		}
 	}
 
+	endTime := time.Now()
+	executionTime := endTime.Sub(startTime)
+
+	fmt.Println("Soluzione: ")
+	fmt.Println(mat.Formatted(x))
+
+	fmt.Println("Numero iterazioni: ", k)
+	fmt.Println("Tempo di esecuzione: ", executionTime)
 }

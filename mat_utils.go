@@ -63,12 +63,26 @@ func ComputePN(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	return p, n
 }
 
-func SubVectors(a *mat.VecDense, b *mat.VecDense) *mat.VecDense {
-	res := mat.NewVecDense(a.Len(), nil)
+func CheckStop(r *mat.VecDense, b *mat.VecDense, tol float64) bool {
+	normR := r.Norm(1)
+	normB := b.Norm(1)
 
-	for i := 0; i < a.Len(); i++ {
-		res.SetVec(i, a.At(i, 0)-b.At(i, 0))
-	}
+	ratio := normR / normB
+	//fmt.Println("Norm ratio: ", ratio)
+	return ratio >= tol
+}
 
-	return res
+func UpdateJacobi(x *mat.VecDense, pInv *mat.Dense, a *mat.Dense, b *mat.VecDense) (*mat.VecDense, *mat.VecDense) {
+	var ax mat.VecDense
+	ax.MulVec(a, x)
+
+	var r mat.VecDense
+	r.SubVec(b, &ax)
+
+	var pr mat.VecDense
+	pr.MulVec(pInv, &r)
+
+	x.AddVec(x, &pr)
+
+	return x, &r
 }
