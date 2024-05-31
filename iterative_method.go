@@ -75,8 +75,14 @@ func IterativeMethod(methodName string, filename string, tol float64, maxIter in
 	endTime := time.Now()
 	executionTime := endTime.Sub(startTime)
 
+	var s mat.VecDense
+	s.SubVec(x, xEs)
+
+	relativeError := s.Norm(1) / xEs.Norm(1)
+
 	fmt.Println("Number of iterations: ", k)
 	fmt.Println("Execution time: ", executionTime)
+	fmt.Println("Relative Error: ", relativeError)
 
 	return x
 }
