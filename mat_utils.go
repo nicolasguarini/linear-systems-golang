@@ -45,3 +45,22 @@ func ReadMTX(filename string) (*mat.Dense, error) {
 
 	return a, nil
 }
+
+func ForwardSubstitution(L *mat.Dense, b *mat.VecDense) *mat.VecDense {
+	rows, cols := L.Dims()
+	if rows != cols {
+		panic("L must be a square matrix")
+	}
+
+	x := mat.NewVecDense(rows, nil)
+
+	for i := 0; i < rows; i++ {
+		sum := b.AtVec(i)
+		for j := 0; j < i; j++ {
+			sum -= L.At(i, j) * x.AtVec(j)
+		}
+		x.SetVec(i, sum/L.At(i, i))
+	}
+
+	return x
+}

@@ -15,6 +15,7 @@ func main() {
 	})
 	maxIter := 20000
 
-	x := IterativeMethod("Jacobi", "./matrices/spa1.mtx", tols.At(0, 0), maxIter, ComputePNJacobi, UpdateJacobi)
-	fmt.Println("Soluton length:", x.Len())
+	IterativeMethod("Jacobi", "./matrices/spa1.mtx", tols.AtVec(3), maxIter, ComputePNJacobi, UpdateJacobi)
+	fmt.Println()
+	IterativeMethod("Gauß-Seidel", "./matrices/spa1.mtx", tols.AtVec(3), maxIter, ComputePNGaußSeidel, UpdateGaußSeidel)
 }

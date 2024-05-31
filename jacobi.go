@@ -18,6 +18,7 @@ func ComputePNJacobi(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 		}
 	}
 
+	p.Inverse(p)
 	return p, n
 }
 

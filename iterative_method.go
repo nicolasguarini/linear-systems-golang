@@ -22,7 +22,7 @@ func CheckStop(r *mat.VecDense, b *mat.VecDense, tol float64) bool {
 }
 
 func IterativeMethod(methodName string, filename string, tol float64, maxIter int, computePN ComputePNFunc, update UpdateFunc) *mat.VecDense {
-	fmt.Println(methodName, " - Matrix:", filename, " Tolerance:", tol, " Max Iterations:", maxIter)
+	fmt.Println(methodName, "- Matrix:", filename, " Tolerance:", tol, " Max Iterations:", maxIter)
 	a, err := ReadMTX(filename)
 
 	if err != nil {
@@ -46,9 +46,6 @@ func IterativeMethod(methodName string, filename string, tol float64, maxIter in
 
 	p, _ := computePN(a)
 
-	var pInv mat.Dense
-	pInv.Inverse(p)
-
 	x := mat.NewVecDense(b.Len(), make([]float64, b.Len()))
 
 	var ax mat.VecDense
@@ -60,7 +57,7 @@ func IterativeMethod(methodName string, filename string, tol float64, maxIter in
 	k := 0
 	for CheckStop(&r, &b, tol) {
 		k += 1
-		newX, newR := update(x, &pInv, a, &b)
+		newX, newR := update(x, p, a, &b)
 
 		x = newX
 		r = *newR
