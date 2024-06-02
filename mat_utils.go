@@ -64,3 +64,13 @@ func ForwardSubstitution(L *mat.Dense, b *mat.VecDense) *mat.VecDense {
 
 	return x
 }
+
+func ComputeR(a *mat.Dense, b *mat.VecDense, x *mat.VecDense) *mat.VecDense {
+	var ax mat.VecDense
+	ax.MulVec(a, x)
+
+	var r mat.VecDense
+	r.SubVec(b, &ax)
+
+	return &r
+}

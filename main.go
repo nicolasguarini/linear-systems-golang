@@ -18,4 +18,6 @@ func main() {
 	IterativeMethod("Jacobi", "./matrices/spa1.mtx", tols.AtVec(3), maxIter, ComputePNJacobi, UpdateJacobi)
 	fmt.Println()
 	IterativeMethod("Gauß-Seidel", "./matrices/spa1.mtx", tols.AtVec(3), maxIter, ComputePNGaußSeidel, UpdateGaußSeidel)
+	fmt.Println()
+	IterativeMethod("Gradient Descent", "./matrices/spa1.mtx", tols.AtVec(3), maxIter, ComputePNGradientDescent, UpdateGradientDescent)
 }
