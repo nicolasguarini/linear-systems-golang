@@ -22,7 +22,7 @@ func ComputePNGaußSeidel(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	return p, n
 }
 
-func UpdateGaußSeidel(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense) (*mat.VecDense, *mat.VecDense) {
+func UpdateGaußSeidel(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense, d *mat.VecDense) (*mat.VecDense, *mat.VecDense, *mat.VecDense) {
 	var ax mat.VecDense
 	ax.MulVec(a, x) // Ax = A * x
 	var r mat.VecDense
@@ -32,5 +32,5 @@ func UpdateGaußSeidel(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDe
 
 	x.AddVec(x, y) // x = x + y
 
-	return x, &r
+	return x, &r, nil
 }

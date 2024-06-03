@@ -22,7 +22,7 @@ func ComputePNJacobi(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	return p, n
 }
 
-func UpdateJacobi(x *mat.VecDense, pInv *mat.Dense, a *mat.Dense, b *mat.VecDense) (*mat.VecDense, *mat.VecDense) {
+func UpdateJacobi(x *mat.VecDense, pInv *mat.Dense, a *mat.Dense, b *mat.VecDense, d *mat.VecDense) (*mat.VecDense, *mat.VecDense, *mat.VecDense) {
 	var ax mat.VecDense
 	ax.MulVec(a, x)
 
@@ -34,5 +34,5 @@ func UpdateJacobi(x *mat.VecDense, pInv *mat.Dense, a *mat.Dense, b *mat.VecDens
 
 	x.AddVec(x, &pr)
 
-	return x, &r
+	return x, &r, nil
 }

@@ -8,7 +8,7 @@ func ComputePNGradientDescent(a *mat.Dense) (*mat.Dense, *mat.Dense) {
 	return nil, nil
 }
 
-func UpdateGradientDescent(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense) (*mat.VecDense, *mat.VecDense) {
+func UpdateGradientDescent(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense, d *mat.VecDense) (*mat.VecDense, *mat.VecDense, *mat.VecDense) {
 	r := ComputeR(a, b, x)
 
 	var y mat.VecDense
@@ -21,5 +21,5 @@ func UpdateGradientDescent(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.V
 
 	x.AddScaledVec(x, alpha_k, r)
 
-	return x, r
+	return x, r, nil
 }

@@ -11,7 +11,7 @@ import (
 type ComputePNFunc func(a *mat.Dense) (*mat.Dense, *mat.Dense)
 
 // Generic function type for updating the iterative solution
-type UpdateFunc func(x *mat.VecDense, pInv *mat.Dense, a *mat.Dense, b *mat.VecDense) (*mat.VecDense, *mat.VecDense)
+type UpdateFunc func(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense, d *mat.VecDense) (*mat.VecDense, *mat.VecDense, *mat.VecDense)
 
 func CheckStop(r *mat.VecDense, b *mat.VecDense, tol float64) bool {
 	normR := r.Norm(1)
@@ -51,16 +51,13 @@ func IterativeMethod(methodName string, filename string, tol float64, maxIter in
 	var ax mat.VecDense
 	ax.MulVec(a, x)
 
-	var r mat.VecDense
-	r.SubVec(&ax, &b)
+	r := ComputeR(a, &b, x)
 
+	d := r // Direction vector for coniugate gradient method
 	k := 0
-	for CheckStop(&r, &b, tol) {
+	for CheckStop(r, &b, tol) {
 		k += 1
-		newX, newR := update(x, p, a, &b)
-
-		x = newX
-		r = *newR
+		x, r, d = update(x, p, a, &b, d)
 
 		if k > maxIter {
 			fmt.Println("The solution does not converge.")
