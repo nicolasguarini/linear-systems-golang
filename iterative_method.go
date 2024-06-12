@@ -14,20 +14,20 @@ type ComputePNFunc func(a *mat.Dense) (*mat.Dense, *mat.Dense)
 type UpdateFunc func(x *mat.VecDense, p *mat.Dense, a *mat.Dense, b *mat.VecDense, d *mat.VecDense) (*mat.VecDense, *mat.VecDense, *mat.VecDense)
 
 func CheckStop(r *mat.VecDense, b *mat.VecDense, tol float64) bool {
-	normR := r.Norm(1)
-	normB := b.Norm(1)
+	normR := r.Norm(2)
+	normB := b.Norm(2)
 	ratio := normR / normB
 
 	return ratio >= tol
 }
 
-func IterativeMethod(methodName string, filename string, tol float64, maxIter int, computePN ComputePNFunc, update UpdateFunc) *mat.VecDense {
+func IterativeMethod(methodName string, filename string, tol float64, maxIter int, computePN ComputePNFunc, update UpdateFunc) (*mat.VecDense, int, float64, float64) {
 	fmt.Println(methodName, "- Matrix:", filename, " Tolerance:", tol, " Max Iterations:", maxIter)
 	a, err := ReadMTX(filename)
 
 	if err != nil {
 		fmt.Println("Error reading .mtx file:", err)
-		return nil
+		return nil, 0, 0, 0
 	}
 
 	startTime := time.Now()
@@ -70,16 +70,16 @@ func IterativeMethod(methodName string, filename string, tol float64, maxIter in
 	}
 
 	endTime := time.Now()
-	executionTime := endTime.Sub(startTime)
+	executionTime := endTime.Sub(startTime).Seconds()
 
 	var s mat.VecDense
 	s.SubVec(x, xEs)
 
-	relativeError := s.Norm(1) / xEs.Norm(1)
+	relativeError := s.Norm(2) / xEs.Norm(2)
 
 	fmt.Println("Number of iterations: ", k)
 	fmt.Println("Execution time: ", executionTime)
 	fmt.Println("Relative Error: ", relativeError)
 
-	return x
+	return x, k, executionTime, relativeError
 }

@@ -1,0 +1,65 @@
+Method,Matrix,Tolerance,Iterations,ExecutionTime,RelativeError
+Jacobi,./matrices/spa1.mtx,1.000000e-03,83,0.371259,1.639986e-02
+Gauß-Seidel,./matrices/spa1.mtx,1.000000e-03,6,0.027601,1.148487e-01
+Gradient Descent,./matrices/spa1.mtx,1.000000e-03,44,0.178793,5.042188e-02
+Conjugated Gradient Descent,./matrices/spa1.mtx,1.000000e-03,17,0.173037,4.316000e-02
+Jacobi,./matrices/spa2.mtx,1.000000e-03,27,1.478398,1.303124e-02
+Gauß-Seidel,./matrices/spa2.mtx,1.000000e-03,5,0.222743,2.598896e-03
+Gradient Descent,./matrices/spa2.mtx,1.000000e-03,42,1.583651,4.416920e-02
+Conjugated Gradient Descent,./matrices/spa2.mtx,1.000000e-03,17,1.600810,3.390914e-02
+Jacobi,./matrices/vem1.mtx,1.000000e-03,756,8.731300,3.518745e-02
+Gauß-Seidel,./matrices/vem1.mtx,1.000000e-03,380,3.291306,3.482404e-02
+Gradient Descent,./matrices/vem1.mtx,1.000000e-03,529,5.999125,2.700792e-02
+Conjugated Gradient Descent,./matrices/vem1.mtx,1.000000e-03,34,0.983512,5.239171e-04
+Jacobi,./matrices/vem2.mtx,1.000000e-03,1054,29.692858,4.949587e-02
+Gauß-Seidel,./matrices/vem2.mtx,1.000000e-03,529,11.412022,4.916333e-02
+Gradient Descent,./matrices/vem2.mtx,1.000000e-03,745,20.971265,3.791300e-02
+Conjugated Gradient Descent,./matrices/vem2.mtx,1.000000e-03,42,2.930382,7.327517e-04
+Jacobi,./matrices/spa1.mtx,1.000000e-05,149,0.632927,1.664659e-04
+Gauß-Seidel,./matrices/spa1.mtx,1.000000e-05,14,0.051850,8.309959e-04
+Gradient Descent,./matrices/spa1.mtx,1.000000e-05,1332,5.360860,9.296750e-03
+Conjugated Gradient Descent,./matrices/spa1.mtx,1.000000e-05,99,0.991004,1.523484e-03
+Jacobi,./matrices/spa2.mtx,1.000000e-05,48,2.298400,1.229719e-04
+Gauß-Seidel,./matrices/spa2.mtx,1.000000e-05,8,0.305855,5.141641e-05
+Gradient Descent,./matrices/spa2.mtx,1.000000e-05,664,24.531672,4.935381e-03
+Conjugated Gradient Descent,./matrices/spa2.mtx,1.000000e-05,90,8.389762,1.025287e-03
+Jacobi,./matrices/vem1.mtx,1.000000e-05,1875,21.419093,3.518440e-04
+Gauß-Seidel,./matrices/vem1.mtx,1.000000e-05,940,8.119754,3.473688e-04
+Gradient Descent,./matrices/vem1.mtx,1.000000e-05,1253,14.171389,2.669976e-04
+Conjugated Gradient Descent,./matrices/vem1.mtx,1.000000e-05,42,1.206177,2.757143e-06
+Jacobi,./matrices/vem2.mtx,1.000000e-05,2803,77.071727,4.948165e-04
+Gauß-Seidel,./matrices/vem2.mtx,1.000000e-05,1403,29.385282,4.933477e-04
+Gradient Descent,./matrices/vem2.mtx,1.000000e-05,1873,51.104814,3.797405e-04
+Conjugated Gradient Descent,./matrices/vem2.mtx,1.000000e-05,52,3.599724,4.067724e-06
+Jacobi,./matrices/spa1.mtx,1.000000e-07,215,0.892506,1.689703e-06
+Gauß-Seidel,./matrices/spa1.mtx,1.000000e-07,21,0.074355,1.094182e-05
+Gradient Descent,./matrices/spa1.mtx,1.000000e-07,5896,23.318303,9.781415e-05
+Conjugated Gradient Descent,./matrices/spa1.mtx,1.000000e-07,147,1.454812,1.494166e-05
+Jacobi,./matrices/spa2.mtx,1.000000e-07,68,2.961359,1.448985e-06
+Gauß-Seidel,./matrices/spa2.mtx,1.000000e-07,11,0.391869,1.030502e-06
+Gradient Descent,./matrices/spa2.mtx,1.000000e-07,3508,128.292581,6.784662e-05
+Conjugated Gradient Descent,./matrices/spa2.mtx,1.000000e-07,168,15.451684,7.994728e-06
+Jacobi,./matrices/vem1.mtx,1.000000e-07,2994,34.308394,3.518134e-06
+Gauß-Seidel,./matrices/vem1.mtx,1.000000e-07,1499,12.999016,3.493212e-06
+Gradient Descent,./matrices/vem1.mtx,1.000000e-07,1975,22.461786,2.683743e-06
+Conjugated Gradient Descent,./matrices/vem1.mtx,1.000000e-07,49,1.406583,5.332624e-08
+Jacobi,./matrices/vem2.mtx,1.000000e-07,4552,125.259764,4.946744e-06
+Gauß-Seidel,./matrices/vem2.mtx,1.000000e-07,2278,47.730874,4.924064e-06
+Gradient Descent,./matrices/vem2.mtx,1.000000e-07,3003,81.980540,3.781996e-06
+Conjugated Gradient Descent,./matrices/vem2.mtx,1.000000e-07,60,4.142705,6.310004e-08
+Jacobi,./matrices/spa1.mtx,1.000000e-09,281,1.151896,1.715125e-08
+Gauß-Seidel,./matrices/spa1.mtx,1.000000e-09,29,0.100743,7.749584e-08
+Gradient Descent,./matrices/spa1.mtx,1.000000e-09,10576,41.786046,9.815135e-07
+Conjugated Gradient Descent,./matrices/spa1.mtx,1.000000e-09,188,1.860749,1.524289e-08
+Jacobi,./matrices/spa2.mtx,1.000000e-09,89,3.740819,1.367366e-08
+Gauß-Seidel,./matrices/spa2.mtx,1.000000e-09,15,0.502384,5.570741e-09
+Gradient Descent,./matrices/spa2.mtx,1.000000e-09,6682,243.447960,6.904909e-07
+Conjugated Gradient Descent,./matrices/spa2.mtx,1.000000e-09,220,20.157990,2.720061e-08
+Jacobi,./matrices/vem1.mtx,1.000000e-09,4113,46.814529,3.517828e-08
+Gauß-Seidel,./matrices/vem1.mtx,1.000000e-09,2059,18.000364,3.484060e-08
+Gradient Descent,./matrices/vem1.mtx,1.000000e-09,2697,30.901130,2.701056e-08
+Conjugated Gradient Descent,./matrices/vem1.mtx,1.000000e-09,56,1.674004,3.720193e-10
+Jacobi,./matrices/vem2.mtx,1.000000e-09,6300,174.058913,4.958362e-08
+Gauß-Seidel,./matrices/vem2.mtx,1.000000e-09,3153,66.045803,4.914668e-08
+Gradient Descent,./matrices/vem2.mtx,1.000000e-09,4131,113.614478,3.801429e-08
+Conjugated Gradient Descent,./matrices/vem2.mtx,1.000000e-09,70,4.849546,4.788317e-10
